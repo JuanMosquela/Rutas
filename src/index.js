@@ -8,6 +8,7 @@ import Inicio from './routes/Inicio';
 import NoEncontrado from './routes/NoEncontrado';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -15,8 +16,9 @@ root.render(
       <Routes>
         <Route path='/' element={<App />} >
           <Route index element={<Inicio />} />
-          <Route path='/blog' element={<Blog />} />
-          <Route path='/contacto' element={<Contacto />} />
+          <Route path='blog' element={<Blog />} />
+          
+          <Route path='contacto' element={<Contacto />} />
           <Route path='*' element={<NoEncontrado />} />
 
         </Route>
