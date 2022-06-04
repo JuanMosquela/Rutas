@@ -2,37 +2,28 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 const Blog = () => { 
-
-  const useFetch = (url) => {
     
-    const [data, setData] = useState([]);
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);    
+  const [data, setData] = useState([]);
+    
+  const [loading, setLoading] = useState(false);    
 
-    useEffect(() => {
-        setLoading(true)
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setData(data))                      
-            .catch(e =>  setError('Error de servidor'))
-            .finally(() => setLoading(false))
+  useEffect(() => {
+    setLoading(true)
+    fetchData()
 
-    }, [url])   
+  }, [])  
 
-    return (data, error, loading)
-  }
-
-  const {data, error, loading} = useFetch("https://jsonplaceholder.typicode.com/posts")
-
- 
-
-  if(loading){
-    return <h2>Loading...</h2>
-  }
-
-  if(error !== ""){
-    return <h2>{error}</h2>
-  }
+  const fetchData = async () => {
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+      const data = await res.json()
+      setData(data)
+      
+    } catch {
+      console.log('error')
+      
+    }
+  }  
 
   return (
     <div>
